@@ -276,9 +276,6 @@
   margin-top: 8px;
 }
 
-And add this to the **bottom of `ColorHunt.css`**:
-
-```css id="92537b"
 .color-photo-actions {
   display: flex;
   justify-content: center;
