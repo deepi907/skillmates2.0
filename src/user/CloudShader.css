@@ -1,0 +1,19 @@
+.cloud-shader {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    #1677d2,
+    #b9e7ff
+  );
+}
+
+.cloud-shader-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+

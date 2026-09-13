@@ -1,0 +1,861 @@
+/* =========================================
+   FLOATING CHAT WINDOW
+========================================= */
+
+.chat-window {
+  position: fixed;
+  right: 28px;
+  bottom: 25px;
+
+  width: 350px;
+  height: 480px;
+
+  background: #fffdf7;
+  border: 3px solid #1f2937;
+  border-radius: 18px;
+
+  box-shadow: 8px 8px 0 #1f2937;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  z-index: 9999;
+
+  animation: chatOpen 0.25s ease-out;
+}
+
+
+/* =========================================
+   CHAT OPEN ANIMATION
+========================================= */
+
+@keyframes chatOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================
+   CHAT HEADER
+========================================= */
+
+.chat-header {
+  min-height: 65px;
+
+  padding: 10px 14px;
+
+  background: #f7c948;
+
+  border-bottom: 3px solid #1f2937;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* USER */
+
+.chat-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.chat-avatar {
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid #1f2937;
+  border-radius: 50%;
+
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+}
+
+
+.chat-user strong {
+  display: block;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  color: #1f2937;
+}
+
+
+.chat-user span {
+  display: block;
+
+  margin-top: 2px;
+
+  font-size: 11px;
+
+  color: #198754;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   CHAT CONTROLS
+========================================= */
+
+.chat-controls {
+  display: flex;
+  gap: 5px;
+}
+
+
+.chat-controls button {
+  width: 28px;
+  height: 28px;
+
+  border: 2px solid #1f2937;
+  border-radius: 7px;
+
+  background: #fffdf7;
+
+  color: #1f2937;
+
+  font-size: 16px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.15s;
+}
+
+
+.chat-controls button:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 #1f2937;
+}
+
+
+/* =========================================
+   CHAT BODY
+========================================= */
+
+.chat-body {
+  flex: 1;
+
+  padding: 18px 14px;
+
+  overflow-y: auto;
+
+  background:
+    radial-gradient(
+      circle at 10px 10px,
+      rgba(31, 41, 55, 0.06) 2px,
+      transparent 2px
+    );
+
+  background-size: 20px 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================================
+   EMPTY CHAT
+========================================= */
+
+.chat-empty {
+  margin: auto;
+
+  text-align: center;
+
+  color: #6b7280;
+}
+
+
+.chat-empty-icon {
+  width: 55px;
+  height: 55px;
+
+  margin: 0 auto 12px;
+
+  border: 2px solid #1f2937;
+  border-radius: 50%;
+
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+
+  box-shadow: 3px 3px 0 #1f2937;
+}
+
+
+.chat-empty strong {
+  display: block;
+
+  color: #1f2937;
+
+  font-size: 15px;
+}
+
+
+.chat-empty p {
+  margin-top: 5px;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   CHAT MESSAGES
+========================================= */
+
+.chat-message {
+  max-width: 75%;
+
+  padding: 9px 12px;
+
+  margin-bottom: 10px;
+
+  border: 2px solid #1f2937;
+
+  border-radius: 13px;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  word-break: break-word;
+}
+
+
+.message-me {
+  align-self: flex-end;
+
+  background: #a7f3d0;
+
+  border-bottom-right-radius: 4px;
+
+  box-shadow: 2px 2px 0 #1f2937;
+}
+
+
+.message-other {
+  align-self: flex-start;
+
+  background: #ffffff;
+
+  border-bottom-left-radius: 4px;
+}
+.chat-action-button {
+  width: 38px;
+  height: 38px;
+
+  border: 2px solid #252525;
+  border-radius: 50%;
+
+  background: #fffdf5;
+
+  cursor: pointer;
+
+  font-size: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  transition: 0.2s ease;
+}
+
+.chat-action-button:hover {
+  transform: translateY(-3px) rotate(-3deg);
+  box-shadow: 2px 3px 0 #252525;
+}
+
+/* =========================================
+   INPUT AREA
+========================================= */
+
+.chat-input-area {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px;
+
+  background: #fff;
+
+  border-top: 3px solid #1f2937;
+}
+
+
+.chat-input-area input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 40px;
+
+  padding: 0 12px;
+
+  border: 2px solid #1f2937;
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #fffdf7;
+
+  color: #1f2937;
+
+  font-size: 13px;
+}
+
+
+.chat-input-area input:focus {
+  box-shadow: 2px 2px 0 #f7c948;
+}
+
+
+.chat-input-area button {
+  width: 42px;
+  height: 40px;
+
+  border: 2px solid #1f2937;
+  border-radius: 10px;
+
+  background: #f7c948;
+
+  color: #1f2937;
+
+  font-size: 18px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow: 3px 3px 0 #1f2937;
+
+  transition: 0.15s;
+}
+
+
+.chat-input-area button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #1f2937;
+}
+
+
+/* =========================================
+   MINIMIZED CHAT
+========================================= */
+
+.chat-window.chat-minimized {
+  width: 280px;
+  height: auto;
+
+  border-radius: 15px;
+}
+
+
+.chat-window.chat-minimized .chat-header {
+  min-height: 55px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .chat-window {
+    right: 12px;
+    bottom: 12px;
+
+    width: calc(100vw - 24px);
+
+    height: 70vh;
+
+    max-height: 520px;
+  }
+
+  .chat-window.chat-minimized {
+    width: calc(100vw - 24px);
+  }
+
+}
+
+
+/* =========================================
+   VOICE CALL WINDOW
+========================================= */
+
+.call-window {
+  position: fixed;
+
+  right: 400px;
+  bottom: 25px;
+
+  width: 300px;
+
+  background: #fffdf7;
+
+  border: 3px solid #1f2937;
+  border-radius: 18px;
+
+  box-shadow: 8px 8px 0 #1f2937;
+
+  overflow: hidden;
+
+  z-index: 10000;
+
+  animation: callOpen 0.25s ease-out;
+}
+
+
+/* =========================================
+   CALL OPEN ANIMATION
+========================================= */
+
+@keyframes callOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================
+   CALL HEADER
+========================================= */
+
+.call-header,
+.video-header {
+  min-height: 58px;
+
+  padding: 10px 14px;
+
+  background: #f7c948;
+
+  border-bottom: 3px solid #1f2937;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #1f2937;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+
+/* Close button */
+
+.call-header button,
+.video-header button {
+  width: 28px;
+  height: 28px;
+
+  border: 2px solid #1f2937;
+  border-radius: 7px;
+
+  background: #fffdf7;
+
+  color: #1f2937;
+
+  font-size: 17px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.15s;
+}
+
+.call-header button:hover,
+.video-header button:hover {
+  transform: translate(-1px, -1px);
+
+  box-shadow: 2px 2px 0 #1f2937;
+}
+
+
+/* =========================================
+   CALL BODY
+========================================= */
+
+.call-body {
+  min-height: 260px;
+
+  padding: 30px 20px;
+
+  background:
+    radial-gradient(
+      circle at 10px 10px,
+      rgba(31, 41, 55, 0.06) 2px,
+      transparent 2px
+    );
+
+  background-size: 20px 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   CALL AVATAR
+========================================= */
+
+.call-avatar,
+.video-avatar {
+  width: 80px;
+  height: 80px;
+
+  margin-bottom: 14px;
+
+  border: 3px solid #1f2937;
+  border-radius: 50%;
+
+  background: #a7f3d0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+  font-weight: 900;
+
+  box-shadow: 4px 4px 0 #1f2937;
+
+  animation: avatarFloat 2s ease-in-out infinite;
+}
+
+@keyframes avatarFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+
+.call-body strong {
+  color: #1f2937;
+
+  font-size: 17px;
+}
+
+
+.call-body p {
+  margin: 6px 0 0;
+
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   CALL ACTIONS
+========================================= */
+
+.call-actions,
+.video-actions {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  background: #fff;
+
+  border-top: 3px solid #1f2937;
+}
+
+
+.call-actions button,
+.video-actions button {
+  width: 44px;
+  height: 44px;
+
+  border: 2px solid #1f2937;
+  border-radius: 50%;
+
+  background: #fffdf7;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.15s;
+}
+
+
+.call-actions button:hover,
+.video-actions button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 2px 3px 0 #1f2937;
+
+  background: #f7c948;
+}
+
+
+/* =========================================
+   END CALL BUTTON
+========================================= */
+
+.call-actions .end-call,
+.video-actions .end-call {
+  background: #ff8fa3;
+
+  transform: rotate(135deg);
+}
+
+.call-actions .end-call:hover,
+.video-actions .end-call:hover {
+  background: #ff6f87;
+
+  transform: rotate(135deg) translateY(-2px);
+
+  box-shadow: 2px 3px 0 #1f2937;
+}
+
+
+/* =========================================
+   VIDEO CALL WINDOW
+========================================= */
+
+.video-window {
+  position: fixed;
+
+  right: 400px;
+  bottom: 25px;
+
+  width: 400px;
+
+  background: #fffdf7;
+
+  border: 3px solid #1f2937;
+  border-radius: 18px;
+
+  box-shadow: 8px 8px 0 #1f2937;
+
+  overflow: hidden;
+
+  z-index: 10000;
+
+  animation: callOpen 0.25s ease-out;
+}
+
+
+/* =========================================
+   VIDEO BODY
+========================================= */
+
+.video-body {
+  height: 270px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffd6e7,
+      #d9c8ff,
+      #bde7ff,
+      #fff0a8
+    );
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+
+.video-placeholder {
+  text-align: center;
+
+  color: #1f2937;
+}
+
+
+.video-placeholder strong {
+  display: block;
+
+  font-size: 17px;
+}
+
+
+.video-placeholder p {
+  margin-top: 6px;
+
+  font-size: 12px;
+
+  color: #4b5563;
+}
+
+
+.video-avatar {
+  margin-left: auto;
+  margin-right: auto;
+
+  background: #fff;
+}
+
+
+/* =========================================
+   LITTLE DECORATIONS
+========================================= */
+
+.call-window::before {
+  content: "♥";
+
+  position: absolute;
+
+  top: 70px;
+  right: 15px;
+
+  color: #ff8fa3;
+
+  font-size: 20px;
+
+  transform: rotate(15deg);
+}
+
+.call-window::after {
+  content: "✦";
+
+  position: absolute;
+
+  bottom: 70px;
+  left: 15px;
+
+  color: #b794f4;
+
+  font-size: 18px;
+}
+
+
+/* =========================================
+   CALL / VIDEO MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .call-window,
+  .video-window {
+    right: 20px;
+    bottom: 520px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .call-window,
+  .video-window {
+    right: 12px;
+    bottom: calc(70vh + 25px);
+
+    width: calc(100vw - 24px);
+  }
+
+  .video-body {
+    height: 230px;
+  }
+
+}
+/* =========================================
+   LOCAL VIDEO PREVIEW
+========================================= */
+
+.local-video {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  background: #1f2937;
+}
+
+
+/* Make video body properly contain camera */
+
+.video-body {
+  overflow: hidden;
+  position: relative;
+}
+
+
+/* Camera off state */
+
+.video-placeholder {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Video avatar */
+
+.video-avatar {
+  flex-shrink: 0;
+}
